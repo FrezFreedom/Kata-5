@@ -36,5 +36,10 @@ class BarcodeScannerTest extends TestCase
             'Error: barcode not found',
             '99999',
         ];
+
+        yield [
+            'Error: empty barcode',
+            '',
+        ];
     }
 }
