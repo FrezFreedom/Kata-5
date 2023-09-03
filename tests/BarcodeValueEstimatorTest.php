@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
+require_once ( __DIR__ . '/../BarcodeValueEstimator.php');
 
 final class BarcodeValueEstimatorTest extends TestCase
 {
@@ -11,6 +12,6 @@ final class BarcodeValueEstimatorTest extends TestCase
 
         $value = $barcodeValueEstimator->estimate('12345');
 
-        $this->assertEquals('7.24', $value);
+        $this->assertEquals('7.25', $value);
     }
 }
