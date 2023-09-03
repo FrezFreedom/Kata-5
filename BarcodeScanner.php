@@ -16,7 +16,14 @@ class BarcodeScanner
     {
         $value = $this->barcodeScanner->estimate($barcode);
 
-        $this->response->message = '$' . $value;
+        if($value === -1)
+        {
+            $this->response->message = 'Error: barcode not found';
+        }
+        else
+        {
+            $this->response->message = '$' . $value;
+        }
     }
 
     public function display(): BarcodeScannerDTO
