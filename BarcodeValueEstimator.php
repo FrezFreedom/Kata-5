@@ -12,6 +12,11 @@ class BarcodeValueEstimator
     {
         $barcodesTable = $this->database->loadTableData('barcodes');
 
-        return $barcodesTable[$barcode];
+        if(key_exists($barcode, $barcodesTable))
+        {
+            return $barcodesTable[$barcode];
+        }
+
+        return -1;
     }
 }
