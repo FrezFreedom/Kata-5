@@ -42,4 +42,21 @@ class BarcodeScannerTest extends TestCase
             '',
         ];
     }
+
+    public function testMultipleBarcodesScanner()
+    {
+        $barcodes = ['12345', '23456'];
+
+        $database = new Database();
+        $barcodeValueEstimator = new BarcodeValueEstimator($database);
+        $barcodeScanner = new BarcodeScanner($barcodeValueEstimator);
+
+        foreach ($barcodes as $barcode)
+        {
+            $barcodeScanner->scan($barcode);
+        }
+
+        $response = $barcodeScanner->display();
+        $this->assertEquals('$20', $response->totalStr);
+    }
 }
