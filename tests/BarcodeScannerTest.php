@@ -31,5 +31,10 @@ class BarcodeScannerTest extends TestCase
             '$12.50',
             '23456',
         ];
+
+        yield [
+            'Error: barcode not found',
+            '99999',
+        ];
     }
 }
