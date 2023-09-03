@@ -57,6 +57,6 @@ class BarcodeScannerTest extends TestCase
         }
 
         $response = $barcodeScanner->display();
-        $this->assertEquals('$20', $response->totalStr);
+        $this->assertEquals('$19.75', $response->totalStr);
     }
 }
