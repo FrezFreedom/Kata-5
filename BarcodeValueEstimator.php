@@ -1,10 +1,17 @@
 <?php
 
+require_once ('Database.php');
+
 class BarcodeValueEstimator
 {
+    public function __construct(private Database $database)
+    {
+    }
+
     public function estimate($barcode)
     {
-        if($barcode == '12345')
-            return '7.25';
+        $barcodesTable = $this->database->loadTableData('barcodes');
+
+        return $barcodesTable[$barcode];
     }
 }

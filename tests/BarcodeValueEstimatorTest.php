@@ -3,12 +3,15 @@
 use PHPUnit\Framework\TestCase;
 
 require_once ( __DIR__ . '/../BarcodeValueEstimator.php');
+require_once ( __DIR__ . '/../Database.php');
 
 final class BarcodeValueEstimatorTest extends TestCase
 {
     public function testBarcodeValueEstimator()
     {
-        $barcodeValueEstimator = new BarcodeValueEstimator();
+        $database = new Database();
+
+        $barcodeValueEstimator = new BarcodeValueEstimator($database);
 
         $value = $barcodeValueEstimator->estimate('12345');
 
