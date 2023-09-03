@@ -54,7 +54,6 @@ class BarcodeScannerTest extends TestCase
 
         foreach ($barcodes as $key => $barcode)
         {
-            echo $key . $barcode . '\n';
             $barcodeScanner->scan($barcode);
         }
 
@@ -113,6 +112,42 @@ class BarcodeScannerTest extends TestCase
         yield [
             $expectedResponse4,
             $barcodes4,
+        ];
+
+        $barcodes5 = ['23456', '12345', '', '121001', '80008'];
+
+        $expectedResponse5 = new BarcodeScannerDTO();
+        $expectedResponse5->total = 20;
+        $expectedResponse5->totalStr = '$20';
+        $expectedResponse5->message = '$0.25';
+
+        yield [
+            $expectedResponse5,
+            $barcodes5,
+        ];
+
+        $barcodes6 = ['23456', '12345', '', '121001', '80008', '12345'];
+
+        $expectedResponse6 = new BarcodeScannerDTO();
+        $expectedResponse6->total = 27.25;
+        $expectedResponse6->totalStr = '$27.25';
+        $expectedResponse6->message = '$7.25';
+
+        yield [
+            $expectedResponse6,
+            $barcodes6,
+        ];
+
+        $barcodes7 = ['', '121001'];
+
+        $expectedResponse7 = new BarcodeScannerDTO();
+        $expectedResponse7->total = 0;
+        $expectedResponse7->totalStr = '$0';
+        $expectedResponse7->message = 'Error: barcode not found';
+
+        yield [
+            $expectedResponse7,
+            $barcodes7,
         ];
     }
 }
