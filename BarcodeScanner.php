@@ -16,7 +16,7 @@ class BarcodeScanner
     {
         $value = $this->barcodeScanner->estimate($barcode);
 
-        $this->response->message = '$' . strval($value);
+        $this->response->message = '$' . $value;
     }
 
     public function display(): BarcodeScannerDTO
