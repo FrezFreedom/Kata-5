@@ -29,11 +29,13 @@ class BarcodeScanner
         else
         {
             $this->response->message = '$' . $value;
+            $this->response->total += floatval($value);
         }
     }
 
     public function display(): BarcodeScannerDTO
     {
+        $this->response->totalStr = '$' . strval($this->response->total);
         return $this->response;
     }
 }
