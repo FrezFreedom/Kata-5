@@ -7,14 +7,37 @@ require_once ( __DIR__ . '/../Database.php');
 
 final class BarcodeValueEstimatorTest extends TestCase
 {
-    public function testBarcodeValueEstimator()
+    /**
+     * @dataProvider provideBarcodeValueEstimatorData
+     */
+    public function testBarcodeValueEstimator($expectedValue, $input)
     {
         $database = new Database();
 
         $barcodeValueEstimator = new BarcodeValueEstimator($database);
 
-        $value = $barcodeValueEstimator->estimate('12345');
+        $value = $barcodeValueEstimator->estimate($input);
 
-        $this->assertEquals('7.25', $value);
+        $this->assertEquals($expectedValue, $value);
     }
+
+    public static function provideBarcodeValueEstimatorData()
+    {
+        yield [
+            7.25,
+            '12345',
+        ];
+
+        yield [
+            12.50,
+            '23456',
+        ];
+
+        yield [
+            -1,
+            '99999',
+        ];
+    }
+
+
 }
