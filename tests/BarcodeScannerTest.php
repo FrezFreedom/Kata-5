@@ -9,8 +9,8 @@ class BarcodeScannerTest extends TestCase
     {
         $barcodeScanner = new BarcodeScanner();
         $barcodeScanner->scan('12345');
-        $message = $barcodeScanner->getMessage();
+        $display = $barcodeScanner->display();
 
-        $this->assertEquals('$7.25', $message);
+        $this->assertEquals('$7.25', $display->message);
     }
 }
