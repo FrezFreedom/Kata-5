@@ -14,6 +14,12 @@ class BarcodeScanner
 
     public function scan($barcode)
     {
+        if($barcode === '')
+        {
+            $this->response->message = 'Error: empty barcode';
+            return;
+        }
+
         $value = $this->barcodeScanner->estimate($barcode);
 
         if($value === -1)
